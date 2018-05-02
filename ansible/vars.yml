@@ -1,0 +1,9 @@
+---
+user: teddy
+packages:
+  - vim
+  - git
+  - fish
+  - tmux
+  - tcpdump
+  - build-essential
