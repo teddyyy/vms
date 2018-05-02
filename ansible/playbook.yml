@@ -1,0 +1,38 @@
+# playbook for debian
+---
+- hosts: all
+  become: yes
+  user: vagrant
+  tasks:
+    - name: Install packages
+      apt: name={{ item }} state=present update_cache=yes
+      with_items:
+        - vim
+        - git
+        - fish
+        - tmux
+        - tcpdump
+        - build-essential
+    
+    - name: Install kernel packages
+      shell: apt install linux-headers-$(uname -r)
+
+    - name: Create user
+      user:
+        name: teddy
+        createhome: yes
+        password: $1HmkCoVP.ezo
+        shell: /usr/bin/fish
+        state: present
+
+    - name: Setup authorized keys
+      authorized_key:
+        user: teddy
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+    - name: Attach sudo authority
+      lineinfile:
+        dest: /etc/sudoers
+        backup: yes
+        line: 'teddy ALL=(ALL) NOPASSWD: ALL'    
