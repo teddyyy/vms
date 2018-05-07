@@ -7,4 +7,5 @@ packages:
   - tmux
   - mosh
   - tcpdump
+  - mtr
   - build-essential

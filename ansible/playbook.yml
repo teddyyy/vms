@@ -29,4 +29,4 @@
       lineinfile:
         dest: /etc/sudoers
         backup: yes
-        line: '"{{ user }}" ALL=(ALL) NOPASSWD: ALL'    
+        line: '"{{ user }}" ALL=(ALL) NOPASSWD: ALL'
